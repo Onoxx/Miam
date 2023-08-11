@@ -13,19 +13,9 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
-
-Route::get('/', [UsersController::class, 'showRegisterView']);
-
-// Route::get('/register', [UsersController::class, 'showRegistrationForm']);
-// Route::get('/register?action=register', [UsersController::class, 'registerDB']);
-
-
-// Route::get('/home', function(){
-//     return view('home');
-// });
 Auth::routes();
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/addRecette', [App\Http\Controllers\RecetteController::class, 'create'])->name('addRecette');
+Route::post('/storeRecette', [App\Http\Controllers\RecetteController::class, 'store'])->name('storeRecette');
