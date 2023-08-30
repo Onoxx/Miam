@@ -6,14 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recette extends Model
 {
-    protected $table = 'recettes'; // Nom de la table des recettes
+    protected $table = 'recettes'; 
 
     protected $fillable = ['nom', 'temps_cuisson', 'image', 'commentaire'];
 
-    // Exemple de relation avec l'utilisateur qui a créé la recette
+
     public function utilisateur()
     {
         return $this->belongsTo(User::class);
     }
-    
+    public function recettes()
+    {
+        return $this->hasMany(Recette::class);
+    }
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
 }
